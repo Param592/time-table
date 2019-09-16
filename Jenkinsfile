@@ -31,18 +31,20 @@ node('master') {
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html', reportFiles: 'index.html', reportName: 'Coverage Report'])
         
             
-        }, Checkstyle: {
+        }, 
+            //Checkstyle: {
 
             // Generate Checkstyle report
-            sh '/usr/local/bin/swiftlint lint --reporter checkstyle > checkstyle.xml || true'
+            //sh '/usr/local/bin/swiftlint lint --reporter checkstyle > checkstyle.xml || true'
     
             // Publish checkstyle result
-            step([$class: 'CheckStylePublisher', canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'checkstyle.xml', unHealthy: ''])
-        }, failFast: true|false   
+            //step([$class: 'CheckStylePublisher', canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'checkstyle.xml', unHealthy: ''])
+        //}, 
+            failFast: true|false   
     }
 
     stage ('Notify') {
         // Send slack notification
-        slackSend channel: '#my-team', message: 'Time Table - Successfully', teamDomain: 'my-team', token: 'my-token'
+        //slackSend channel: '#my-team', message: 'Time Table - Successfully', teamDomain: 'my-team', token: 'my-token'
     }
 }
